@@ -16,6 +16,7 @@ class Program
     job2._company = "Apple";
     job2._startYear = 2016;
     job2._endYear = 2020;
+    
     Resume myResume = new Resume();
     myResume._name = "Butros Kioko";
 
