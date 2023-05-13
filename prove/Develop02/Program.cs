@@ -21,6 +21,7 @@ class Program
             if (userInput == 1)
             {
                 string prompt = randomPromptGenerator.randomPrompt();
+                Console.Write(">");
                 string reply = Console.ReadLine();
                 newEntry._date = DateTime.Now.ToString("MM/dd/yyyy");
                 newEntry._prompt = prompt;
