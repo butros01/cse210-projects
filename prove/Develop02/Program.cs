@@ -52,10 +52,7 @@ class Program
                 string [] lines= File.ReadAllLines(fileName);
 
                 foreach (string line in lines)
-                {
-                    
-                    myJournal._entries.Add(line);
-                }
+                    //Console.WriteLine(line);
             }
             if (userInput == 5)
             {
