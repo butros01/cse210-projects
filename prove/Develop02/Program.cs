@@ -7,13 +7,14 @@ class Program
     {
         Console.WriteLine("Hello, Welcome to the Journal Program");
         Menu menu = new Menu();
-        
+
         int userInput = -1;
         Prompt randomPromptGenerator = new Prompt();
-        Entry newEntry = new Entry();
         Journal myJournal = new Journal();
+
         while (userInput != 5)
         {   
+            Entry newEntry = new Entry();
             menu.Display();
             Console.Write("What would you like to do? ");
             string newUserInput = Console.ReadLine();
@@ -27,7 +28,6 @@ class Program
                 newEntry._prompt = prompt;
                 newEntry._reply = reply;
                 myJournal._entries.Add(newEntry);
-
             }
         
 
@@ -37,22 +37,24 @@ class Program
             }
             if (userInput == 3)
             {
-                Console.Write("What is the filename");
+                Console.Write("What is the filename? ");
                 string fileName = Console.ReadLine();
                 using (StreamWriter outPutFile = new StreamWriter(fileName, true))
                 {
-                    outPutFile.WriteLine(newEntry.newEntry());
-                }
+                    foreach ( Entry line in myJournal._entries)
+                    outPutFile.WriteLine(line.completeEntry());
+                }     
             }
             if (userInput == 4)
             {
-                Console.Write("What is the filename");
+                Console.Write("What is the filename? ");
                 string fileName = Console.ReadLine();
-                string [] lines = File.ReadAllLines(fileName);
+                string [] lines= File.ReadAllLines(fileName);
 
                 foreach (string line in lines)
                 {
-                    Console.WriteLine(line);
+                    
+                    myJournal._entries.Add(line);
                 }
             }
             if (userInput == 5)
