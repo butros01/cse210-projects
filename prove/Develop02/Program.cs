@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 class Program
 {
@@ -42,7 +43,9 @@ class Program
                 using (StreamWriter outPutFile = new StreamWriter(fileName, true))
                 {
                     foreach ( Entry line in myJournal._entries)
-                    outPutFile.WriteLine(line.completeEntry());
+                    {
+                        outPutFile.WriteLine(line.completeEntry());
+                    }
                 }     
             }
             if (userInput == 4)
@@ -52,7 +55,11 @@ class Program
                 string [] lines= File.ReadAllLines(fileName);
 
                 foreach (string line in lines)
-                    //Console.WriteLine(line);
+
+                {
+                    Console.WriteLine(line);
+                }
+                    
             }
             if (userInput == 5)
             {

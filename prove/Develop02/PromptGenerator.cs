@@ -9,7 +9,7 @@ public class Prompt
         "How did I see the hand of the Lord in my life today?", 
         "What was the strongest emotion I felt today?", 
         "If I had one thing I could do over today, what would it be?",
-        "How did I profress towards achieving my set goal for this year"
+        "How did I progress towards achieving my set goal for this year"
     };
 
     public string randomPrompt()
