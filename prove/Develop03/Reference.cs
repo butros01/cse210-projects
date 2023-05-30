@@ -1,21 +1,15 @@
 public class Reference
 {
-    public static string _book;
-    public static int _chapter;
-    public static int  _startVerse;
-    public static int _endVerse;
+    private static string _book;
+    private static int _chapter;
+    private static int  _startVerse;
+    private static int _endVerse;
 
     public Reference(string book, int chapter, int verse)
     {
         _book = book;
         _chapter = chapter;
         _startVerse = verse;
-        // if (_startVerse != _endVerse)
-        // {
-        //     _endVerse = ' ';
-        // }
-            
-        
     }
     public Reference(string book, int chapter, int startVerse, int endVerse)
         {
@@ -27,8 +21,18 @@ public class Reference
 
     public static string GetReference()
     {
-        string referenceText = $"{_book} {_chapter}:{_startVerse}";
-        return referenceText;
+        if (_endVerse == 0)
+        {
+            string referenceText = $"{_book} {_chapter}:{_startVerse}";
+            return referenceText;
+        }
+        else 
+        {
+            string referenceText = $"{_book} {_chapter}:{_startVerse}-{_endVerse}";
+            return referenceText;
+        }
+        
+        
     }
 }
 
