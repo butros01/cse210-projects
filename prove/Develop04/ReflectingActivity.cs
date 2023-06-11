@@ -22,14 +22,14 @@ public class ReflectingActivity : Activity
     { 
     }
 
-    public string Questions()
+    private string Questions()
     {
         Random random = new Random();
         int number = random.Next(reflectingQuestionPrompts.Length);
         Console.Write($"> {reflectingQuestionPrompts[number]}");
         return reflectingQuestionPrompts[number];
     }
-    public string randomReflectingPrompt()
+    private string randomReflectingPrompt()
     {
         Random random = new Random();
         int number = random.Next(reflectingRandomPrompts.Length);
@@ -40,13 +40,16 @@ public class ReflectingActivity : Activity
     public void Display()
     {
         Console.WriteLine(GetWelcomeDisplay());
+        Console.WriteLine();
         ActivityDuration();
-        
+        Console.WriteLine();
         Console.WriteLine("Get Ready...");
         SpinnerAnimation();
-        Console.WriteLine("\n");
+        Console.WriteLine("");
         Console.WriteLine("Consider the following prompt: ");
+        Console.WriteLine();
         randomReflectingPrompt();
+        Console.WriteLine();
         Console.WriteLine("When you have something in Mind press enter to continue.");
         string newUserEntry = Console.ReadLine();
         Console.WriteLine("Now ponder on each of the following questions as they relate to this experience");
@@ -54,13 +57,14 @@ public class ReflectingActivity : Activity
         Console.Write("You may begin in: ");
         TimerAnimation(4);
         Console.WriteLine();
-        this.sw.Start();
-        double acc = 0.0;
-        // DateTime startTime = DateTime.Now;
-        // DateTime futureTime = startTime.AddSeconds(GetActivityDuration());
-        while (acc <= GetActivityDuration())
+        // sw.Reset();
+        // sw.Start();
+        // double acc = 0.0;
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(GetActivityDuration());
+        while (DateTime.Now < futureTime)
         {
-            acc += this.deltaTime();
+            // acc += this.deltaTime();
             Questions();
             SpinnerAnimation();
             Console.WriteLine();      

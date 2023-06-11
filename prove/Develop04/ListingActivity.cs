@@ -25,18 +25,21 @@ public class ListingActivity : Activity
     public void Display()
     {
         Console.WriteLine(GetWelcomeDisplay());
+        Console.WriteLine();
         ActivityDuration();
-
+        Console.WriteLine();
         Console.WriteLine("Get Ready...");
         SpinnerAnimation();
-        
+        Console.WriteLine();
         Console.WriteLine("List as many responses you can to the following prompt:\n");
         randomPrompt();
+        Console.WriteLine();
         Console.Write("You may begin in: ");
         TimerAnimation(3);
-        Console.WriteLine();
-        
-        this.sw.Start();
+        Console.WriteLine("\n");
+        Console.WriteLine("Please type something\n");
+        sw.Reset();
+        sw.Start();
         double acc = 0.0;
         List<string> buf = new List<string>();
         List<string> userResponses = new List<string>();
@@ -44,7 +47,7 @@ public class ListingActivity : Activity
         // DateTime futureTime = startTime.AddSeconds(GetActivityDuration());
         while (acc <= GetActivityDuration())
         {
-            acc += this.deltaTime();
+            acc += deltaTime();
             if (!Console.KeyAvailable)
             {
                 // Console.Write(">");
@@ -64,7 +67,7 @@ public class ListingActivity : Activity
             }
         };
         int occurences = userResponses.Count();
-        Console.WriteLine($"You have listed {occurences} items");
+        Console.WriteLine($"\nYou have listed {occurences} items");
         GetEndingMessage();
     }
 

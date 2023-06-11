@@ -1,9 +1,10 @@
 using System;
-
+using System.Diagnostics;
 class Program
 {
     static void Main(string[] args)
     {
+        Console.Clear();
         // set console color
         Console.BackgroundColor = ConsoleColor.DarkRed;
         //Display welcome message
@@ -44,10 +45,12 @@ class Program
             {
                 listingActivity.Display();
             }
+            Console.Clear();
+            // Check the userInput
             if (userInput == 4)
             {
                 Console.WriteLine("Thank you for participating in the Mindfulness Activity");
-            }       
+            }   
         }
     }
 }
