@@ -1,0 +1,6 @@
+[ ] speak
+[ ] speak
+[X] gg
+SimpleGoal:speak,gggg,50, False
+SimpleGoal:ret,gg,50, True
+ChecklistGoal:speak,fdfdffd,100, True

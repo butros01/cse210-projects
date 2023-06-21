@@ -9,10 +9,12 @@ class Program
         int response = 0;
         while (response != 6)
         {
-            Console.WriteLine($"Your current score is: {tracker.Score}\n");
+            // Console.Clear();
+            Console.WriteLine($"You have {tracker.Score} points\n");
             Console.WriteLine($"Menu Options\n 1. Create New Goal\n 2. List Goals\n 3. Save Goals\n 4. Load Goals\n 5. Record Event\n 6. Quit");
-            Console.Write("Select Choice from the Menu: \n");
+            Console.Write("Select Choice from the Menu: ");
             response = int.Parse(Console.ReadLine());
+            Console.WriteLine();
             // Allow the user to create new goal
             if (response == 1)
             {
@@ -21,7 +23,7 @@ class Program
             // Show the list of goals to the user
             if (response == 2)
             {
-                tracker.DisplayGoals();
+                tracker.GetList();
             }
             // Save the user's goals and score to file
             if (response == 3)

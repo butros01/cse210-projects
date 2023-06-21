@@ -2,12 +2,13 @@ public class ChecklistGoal : Goal
 {
     private int count;
     private int bonusThreshold;
-    // GoalTracker goalTracker = new GoalTracker();
+    private int bonusPoints;
 
-    public ChecklistGoal(string name, int bonusThreshold, int points) : base(name, points)
+    public ChecklistGoal(string name, string description, int bonusThreshold, int bonusPoints, int points) : base(name, description, points)
     {
         count = 0;
         this.bonusThreshold = bonusThreshold;
+        this.bonusPoints = bonusPoints;
     }
 
     public int Count
@@ -19,6 +20,10 @@ public class ChecklistGoal : Goal
     {
         get { return bonusThreshold; }
     }
+    public int BonusPoints
+    {
+        get { return bonusPoints; }
+    }
 
     public override int RecordEvent(int count)
     {
@@ -27,17 +32,11 @@ public class ChecklistGoal : Goal
         if (this.count >= bonusThreshold)
         {
             isComplete = true;
-            return points + 500;
+            return points + bonusPoints;
         }
         else
         {
             return points;
         }
     }
-
-    // public void CreateChecklistGoal()
-    // {
-    //     ChecklistGoal goal = new ChecklistGoal(name, bonusThreshold, points);
-    //     goalTracker.GetGoals().Add(goal);
-    // }
 }

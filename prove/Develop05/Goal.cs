@@ -3,10 +3,12 @@ public abstract class Goal
         protected string name;
         protected bool isComplete;
         protected int points;
+        protected string description;
 
-        public Goal(string name, int points)
+        public Goal(string name, string description, int points)
         {
             this.name = name;
+            this.description =description;
             this.points = points;
             isComplete = false;
         }
@@ -24,6 +26,10 @@ public abstract class Goal
         public int Points
         {
             get { return points; }
+        }
+        public string Description
+        {
+            get {return description;}
         }
 
         public abstract int RecordEvent(int count);

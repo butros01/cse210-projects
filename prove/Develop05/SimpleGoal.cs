@@ -1,16 +1,12 @@
 public class SimpleGoal : Goal
 {
-    private int value;
-
-    // GoalTracker goalTracker = new GoalTracker();
-    public SimpleGoal(string name, int value, int points) : base(name, points)
+    public SimpleGoal(string name, string description, int points) : base(name, description, points)
     {
-        this.value = value;
     }
 
     public override int RecordEvent(int count)
     {
-        if (count == value)
+        if (count == 1)
         {
             isComplete = true;
             return points;
@@ -20,10 +16,4 @@ public class SimpleGoal : Goal
             return 0;
         }
     }
-
-    // public void CreateSimpleGoal(string name, int value, int points)
-    // {
-    //     SimpleGoal goal = new SimpleGoal(name, value, points);
-    //     goalTracker.GetGoals().Add(goal);
-    // }
 }
