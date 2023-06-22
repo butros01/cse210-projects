@@ -9,7 +9,7 @@ public class SimpleGoal : Goal
         if (count == 1)
         {
             isComplete = true;
-            return points;
+            return Points();
         }
         else
         {

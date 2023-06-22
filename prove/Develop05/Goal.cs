@@ -1,9 +1,9 @@
 public abstract class Goal
     {
-        protected string name;
+        private string name;
         protected bool isComplete;
-        protected int points;
-        protected string description;
+        private int points;
+        private string description;
 
         public Goal(string name, string description, int points)
         {
@@ -13,23 +13,23 @@ public abstract class Goal
             isComplete = false;
         }
 
-        public string Name
+        public string Name()
         {
-            get { return name; }
+            return name;
         }
 
-        public bool IsComplete
+        public bool IsComplete()
         {
-            get { return isComplete; }
+            return isComplete;
         }
 
-        public int Points
+        public int Points()
         {
-            get { return points; }
+            return points;
         }
-        public string Description
+        public string Description()
         {
-            get {return description;}
+            return description;
         }
 
         public abstract int RecordEvent(int count);

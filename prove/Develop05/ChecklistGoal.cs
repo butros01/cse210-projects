@@ -11,18 +11,18 @@ public class ChecklistGoal : Goal
         this.bonusPoints = bonusPoints;
     }
 
-    public int Count
+    public int Count()
     {
-        get { return count; }
+        return count; 
     }
 
-    public int BonusThreshold
+    public int BonusThreshold()
     {
-        get { return bonusThreshold; }
+        return bonusThreshold;
     }
-    public int BonusPoints
+    public int BonusPoints()
     {
-        get { return bonusPoints; }
+        return bonusPoints; 
     }
 
     public override int RecordEvent(int count)
@@ -32,11 +32,11 @@ public class ChecklistGoal : Goal
         if (this.count >= bonusThreshold)
         {
             isComplete = true;
-            return points + bonusPoints;
+            return Points() + bonusPoints;
         }
         else
         {
-            return points;
+            return Points();
         }
     }
 }

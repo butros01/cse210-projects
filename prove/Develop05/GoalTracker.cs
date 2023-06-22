@@ -1,7 +1,6 @@
 public class GoalTracker
 {
     private List<Goal> goals;
-    private List<string> list = new List<string>();
     private int score;
    
     public GoalTracker()
@@ -37,57 +36,47 @@ public class GoalTracker
     
 
     
-    public void DisplayGoals()
+    public void GetList()
     {
         foreach (Goal goal in goals)
         {
-            list.Add($"[{(goal.IsComplete ? "X" : " ")}] {goal.Name} ({goal.Description})");
+            Console.Write($"[{(goal.IsComplete() ? "X" : " ")}] {goal.Name()} ({goal.Description()})");
 
             if (goal is ChecklistGoal)
             {
                 ChecklistGoal checklistGoal = (ChecklistGoal)goal;
-                list.Add($" (Completed {checklistGoal.Count}/{checklistGoal.BonusThreshold} times)");
-            }
-            else
-            {
-                list.Add("");
+                Console.WriteLine($" --Currently completed: {checklistGoal.Count()}/{checklistGoal.BonusThreshold()} times");
             }
         }
 
     }
-    public void GetList()
-    {
-        list.Clear();
-        DisplayGoals();
-        foreach (string line in list)
-        {
-            Console.WriteLine(line);
-        }
-    }
-
     public void Save()
     {
         Console.Write("What is the filename? ");
         string fileName = Console.ReadLine();
-        
+        File.WriteAllText(fileName, String.Empty);
         using (StreamWriter outPutFile = new StreamWriter(fileName, true))
         {
+            outPutFile.WriteLine(score);
             foreach ( Goal goal in goals)
             {
-                outPutFile.WriteLine($"{goal}:{goal.Name},{goal.Description},{goal.Points}, {goal.IsComplete}");
+                outPutFile.WriteLine($"{goal}:{goal.Name()},{goal.Description()},{goal.Points()},[{(goal.IsComplete() ? "X" : " ")}]");
             }
+
         }
     }
 
     public void Load()
     {
-        list.Clear();
         Console.Write("What is the filename? ");
         string fileName = Console.ReadLine();
         string [] lines= File.ReadAllLines(fileName);
         foreach (string line in lines)
         {
-            list.Add(line);
+            var newline = line.Split(":");
+            var objectDetails = newline[1];
+            var part = objectDetails.Split(",");
+            // incomplete code
         }
     }
 
@@ -140,7 +129,7 @@ public class GoalTracker
     {
         foreach (Goal goal in goals)
         {
-            if (goal.Name.ToLower() == name.ToLower())
+            if (goal.Name().ToLower() == name.ToLower())
             {
                 if (goal is SimpleGoal)
                 {
