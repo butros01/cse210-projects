@@ -76,6 +76,7 @@ public class GoalTracker
             var newline = line.Split(":");
             var objectDetails = newline[1];
             var part = objectDetails.Split(",");
+            
             // incomplete code
         }
     }
@@ -159,7 +160,7 @@ public class GoalTracker
         Console.WriteLine("The Goals are: ");
         foreach (Goal goal in goals)
         {
-            Console.WriteLine($"{goal.Name}");
+            Console.WriteLine($"{goal.Name()}");
         }
         Console.Write("Which goal would you like to accomplish? ");
         string goalName = Console.ReadLine();
