@@ -23,7 +23,7 @@ class Program
             // Show the list of goals to the user
             if (response == 2)
             {
-                tracker.GetList();
+                tracker.ListGoals();
             }
             // Save the user's goals and score to file
             if (response == 3)
@@ -45,7 +45,7 @@ class Program
             // Allow user to enter option to quit
             if (response == 6)
             {
-                Console.WriteLine("Terminated the Program.\nTHANK YOU FOR PARTICIPATING !!!");
+                Console.WriteLine("Program Terminated.\nTHANK YOU FOR PARTICIPATING !!!");
             }
         }
     }

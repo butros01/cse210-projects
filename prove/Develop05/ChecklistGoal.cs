@@ -31,7 +31,7 @@ public class ChecklistGoal : Goal
 
         if (this.count >= bonusThreshold)
         {
-            isComplete = true;
+            _isComplete = true;
             return Points() + bonusPoints;
         }
         else

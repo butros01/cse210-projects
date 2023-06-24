@@ -6,7 +6,7 @@ public class EternalGoal : Goal
 
     public override int RecordEvent(int count)
     {
-        isComplete = false;
+        _isComplete = false;
         return Points();
     }
 }

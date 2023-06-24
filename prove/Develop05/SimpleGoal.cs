@@ -8,7 +8,7 @@ public class SimpleGoal : Goal
     {
         if (count == 1)
         {
-            isComplete = true;
+            _isComplete = true;
             return Points();
         }
         else

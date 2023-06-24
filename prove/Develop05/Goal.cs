@@ -1,36 +1,36 @@
 public abstract class Goal
+{
+    private string _name;
+    protected bool _isComplete;
+    private int _points;
+    private string _description;
+
+    public Goal(string name, string description, int points)
     {
-        private string name;
-        protected bool isComplete;
-        private int points;
-        private string description;
-
-        public Goal(string name, string description, int points)
-        {
-            this.name = name;
-            this.description =description;
-            this.points = points;
-            isComplete = false;
-        }
-
-        public string Name()
-        {
-            return name;
-        }
-
-        public bool IsComplete()
-        {
-            return isComplete;
-        }
-
-        public int Points()
-        {
-            return points;
-        }
-        public string Description()
-        {
-            return description;
-        }
-
-        public abstract int RecordEvent(int count);
+        this._name = name;
+        this._description =description;
+        this._points = points;
+        _isComplete = false;
     }
+
+    public string Name()
+    {
+        return _name;
+    }
+
+    public bool IsComplete()
+    {
+        return _isComplete;
+    }
+
+    public int Points()
+    {
+        return _points;
+    }
+    public string Description()
+    {
+        return _description;
+    }
+
+    public abstract int RecordEvent(int count);
+};
