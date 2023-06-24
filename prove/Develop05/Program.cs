@@ -10,7 +10,7 @@ class Program
         while (response != 6)
         {
             // Console.Clear();
-            Console.WriteLine($"\n\nYou have {tracker.Score} points\n");
+            Console.WriteLine($"You have {tracker.Score} points\n");
             Console.WriteLine($"Menu Options\n 1. Create New Goal\n 2. List Goals\n 3. Save Goals\n 4. Load Goals\n 5. Record Event\n 6. Quit");
             Console.Write("Select Choice from the Menu: ");
             response = int.Parse(Console.ReadLine());
