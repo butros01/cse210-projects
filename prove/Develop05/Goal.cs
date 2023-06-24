@@ -10,7 +10,7 @@ public abstract class Goal
         this._name = name;
         this._description =description;
         this._points = points;
-        _isComplete = false;
+        
     }
 
     public string Name()
@@ -20,7 +20,7 @@ public abstract class Goal
 
     public bool IsComplete()
     {
-        return _isComplete;
+         return _isComplete;
     }
 
     public int Points()

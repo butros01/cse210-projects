@@ -1,18 +1,18 @@
 public class GoalTracker
 {
     private List<Goal> goals;
-    private int score;
-   
+    private int _score;
+    private int _newPoints;
     public GoalTracker()
     {
         goals = new List<Goal>();
-        score = 0;
+        _score = 0;
     }
 
     
     public int Score
     {
-        get { return score; }
+        get { return _score; }
     }
 
 
@@ -27,12 +27,14 @@ public class GoalTracker
         string goalDescription = Console.ReadLine();
         Console.Write("What is the amount of points associated with this goal? ");
         int points = int.Parse(Console.ReadLine());
+        bool isComplete = false;
+        
 
         switch(goalType)
         {
             case 1:
             {
-                SimpleGoal goal = new SimpleGoal(goalName, goalDescription, points);
+                SimpleGoal goal = new SimpleGoal(goalName, goalDescription, points, isComplete);
                 goals.Add(goal);
                 break;
             }
@@ -46,16 +48,16 @@ public class GoalTracker
 
             case 3:
             {
-                
-                
+                int count = 0;
                 Console.Write("How many times must the user complete this goal to receive the bonus?");
                 int bonusThreshold = int.Parse(Console.ReadLine());
                 Console.Write("What is the bonus for accomplishing it that many times? ");
                 int bonusPoints = int.Parse(Console.ReadLine());
-                ChecklistGoal goal = new ChecklistGoal(goalName, goalDescription, bonusThreshold, bonusPoints, points);
+                ChecklistGoal goal = new ChecklistGoal(goalName, goalDescription, points, bonusPoints, bonusThreshold, count);
                 goals.Add(goal);
                 break;
             }
+
             default:
             {
                 Console.WriteLine("Invalid goal type. Please try again.");
@@ -88,11 +90,22 @@ public class GoalTracker
         File.WriteAllText(fileName, String.Empty);
         using (StreamWriter outPutFile = new StreamWriter(fileName, true))
         {
-            outPutFile.WriteLine(score);
+            outPutFile.WriteLine(_score);
             foreach ( Goal goal in goals)
             {
-                outPutFile.WriteLine($"{goal}:{goal.Name()},{goal.Description()},{goal.Points()},{goal.IsComplete()}");
-                
+                if (goal is SimpleGoal)
+                {
+                    outPutFile.WriteLine($"{goal}:{goal.Name()},{goal.Description()},{goal.Points()},{goal.IsComplete()}");   
+                }
+                if (goal is EternalGoal)
+                {
+                    outPutFile.WriteLine($"{goal}:{goal.Name()},{goal.Description()},{goal.Points()}");   
+                }
+                else if(goal is ChecklistGoal)
+                {
+                    ChecklistGoal checklistGoal = (ChecklistGoal)goal;
+                    outPutFile.WriteLine($"{goal}:{goal.Name()},{goal.Description()},{goal.Points()},{checklistGoal.BonusPoints()}, {checklistGoal.BonusThreshold()},{checklistGoal.Count()}");
+                }
             }
 
         }
@@ -105,31 +118,40 @@ public class GoalTracker
         int Loadscore()
         {
             string newScore = File.ReadLines(fileName).Take(1).First();
-            score = int.Parse(newScore);
-            return score;
+            _score = int.Parse(newScore);
+            return _score;
         }
         // call method to load score
         Loadscore();
 
         string [] lines= File.ReadAllLines(fileName);
-        List<string> list = new List<string>();
         foreach (string line in lines.Skip(1))
         
         {
             var newline = line.Split(":");
+            var objectType = newline[0];
             var objectDetails = newline[1];
             var part = objectDetails.Split(",");
-            list.Add($"{part[3]} {part[1]} {part[2]}");
-            // I need help with completing this code. 
-            // I want this to be added in the goals list 
-            // I do not not hoe to do that. I have 
-            // researched but no help.
+            if (objectType == "SimpleGoal")
+            {
+                SimpleGoal simpleGoal = new SimpleGoal(part[0], part[1], int.Parse(part[2]), bool.Parse(part[3]));
+                goals.Add(simpleGoal);   
+            }
+            if (objectType == "EternalGoal")
+            {
+                EternalGoal eternalGoal = new EternalGoal(part[0], part[1], int.Parse(part[2]));
+                goals.Add(eternalGoal);
+            }
+            if (objectType == "ChecklistGoal")
+            {
+                ChecklistGoal checklistGoal = new ChecklistGoal(part[0], part[1],int.Parse(part[2]), int.Parse(part[3]), int.Parse(part[4]), int.Parse(part[5]));
+                goals.Add(checklistGoal);
+            }
         }       
     }
 
     
-    public void RecordEvent()
-    
+    public void RecordEvent() 
     {
         bool RecordEvent(string name, int count)
         {
@@ -140,19 +162,22 @@ public class GoalTracker
                     if (goal is SimpleGoal)
                     {
                         SimpleGoal simpleGoal = (SimpleGoal)goal;
-                        score += simpleGoal.RecordEvent(count);
+                        _score += simpleGoal.RecordEvent(count);
+                        _newPoints = goal.Points();
                         return true;
                     }
                     else if (goal is EternalGoal)
                     {
                         EternalGoal eternalGoal = (EternalGoal)goal;
-                        score += eternalGoal.RecordEvent(count);
+                        _score += eternalGoal.RecordEvent(count);
+                        _newPoints = goal.Points();
                         return true;
                     }
                     else if (goal is ChecklistGoal)
                     {
                         ChecklistGoal checklistGoal = (ChecklistGoal)goal;
-                        score += checklistGoal.RecordEvent(count);
+                        _score += checklistGoal.RecordEvent(count);
+                        _newPoints = goal.Points();
                         return true;
                     }
                 }
@@ -164,7 +189,7 @@ public class GoalTracker
         Console.WriteLine("The Goals are: ");
         
         foreach (Goal goal in goals)
-        {
+        { 
             Console.WriteLine($"{goal.Name()}");
         }
         Console.Write("Which goal would you like to accomplish? ");
@@ -172,7 +197,8 @@ public class GoalTracker
         
         if (RecordEvent(goalName, 1))
         {
-            Console.WriteLine($"Congratulations! You have earned {score} points!.\nYou now have {score} points");
+            
+            Console.WriteLine($"Congratulations! You have earned {_newPoints} points!.\nYou now have {_score} points\n");
         }
         else
         {

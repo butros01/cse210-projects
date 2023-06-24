@@ -1,12 +1,17 @@
 public class SimpleGoal : Goal
 {
-    public SimpleGoal(string name, string description, int points) : base(name, description, points)
+    private int _count;
+    public SimpleGoal(string name, string description, int points, bool isComplete) : base(name, description, points)
     {
+        _count = 0;
+        _isComplete = isComplete;
+        
     }
 
     public override int RecordEvent(int count)
     {
-        if (count == 1)
+        _count += count;
+        if (_count == 1)
         {
             _isComplete = true;
             return Points();
