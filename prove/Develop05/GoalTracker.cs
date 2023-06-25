@@ -15,7 +15,7 @@ public class GoalTracker
         get { return _score; }
     }
 
-
+// Method to create goals
     public void CreatNewGoal()
     {
         Console.WriteLine($"The types of Goals are:\n 1. Simple Goal\n 2. Eternal Goal\n 3. Checklist goal");
@@ -68,6 +68,8 @@ public class GoalTracker
         Console.WriteLine("Goal created successfully.\n");
     }
 
+    // Method to display goals list
+
     public void ListGoals()
     {
         foreach (Goal goal in goals)
@@ -83,6 +85,7 @@ public class GoalTracker
         }
 
     }
+    // method to save goals to a txt file
     public void Save()
     {
         Console.Write("What is the filename? ");
@@ -104,13 +107,14 @@ public class GoalTracker
                 else if(goal is ChecklistGoal)
                 {
                     ChecklistGoal checklistGoal = (ChecklistGoal)goal;
-                    outPutFile.WriteLine($"{goal}:{goal.Name()},{goal.Description()},{goal.Points()},{checklistGoal.BonusPoints()}, {checklistGoal.BonusThreshold()},{checklistGoal.Count()}");
+                    outPutFile.WriteLine($"{goal}:{goal.Name()},{goal.Description()},{goal.Points()},{checklistGoal.BonusPoints()},{checklistGoal.BonusThreshold()},{checklistGoal.Count()}");
                 }
             }
 
         }
     }
 
+// method to load save goalsand user progress
     public void Load()
     {
         Console.Write("What is the filename? ");
@@ -150,7 +154,7 @@ public class GoalTracker
         }       
     }
 
-    
+// Method to record event
     public void RecordEvent() 
     {
         bool RecordEvent(string name, int count)

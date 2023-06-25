@@ -1,38 +1,38 @@
 public class ChecklistGoal : Goal
 {
-    private int count;
-    private int bonusThreshold;
-    private int bonusPoints;
+    private int _count;
+    private int _bonusThreshold;
+    private int _bonusPoints;
 
     public ChecklistGoal(string name, string description, int points, int bonusPoints, int bonusThreshold, int count) : base(name, description, points)
     {
         count = 0;
-        this.bonusThreshold = bonusThreshold;
-        this.bonusPoints = bonusPoints;
+        this._bonusThreshold = bonusThreshold;
+        this._bonusPoints = bonusPoints;
     }
 
     public int Count()
     {
-        return count; 
+        return _count; 
     }
 
     public int BonusThreshold()
     {
-        return bonusThreshold;
+        return _bonusThreshold;
     }
     public int BonusPoints()
     {
-        return bonusPoints; 
+        return _bonusPoints; 
     }
 
     public override int RecordEvent(int count)
     {
-        this.count += count;
+        this._count += count;
 
-        if (this.count >= bonusThreshold)
+        if (this._count >= _bonusThreshold)
         {
             _isComplete = true;
-            return Points() + bonusPoints;
+            return Points() + _bonusPoints;
         }
         else
         {
