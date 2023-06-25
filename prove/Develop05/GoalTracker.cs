@@ -49,7 +49,7 @@ public class GoalTracker
             case 3:
             {
                 int count = 0;
-                Console.Write("How many times must the user complete this goal to receive the bonus?");
+                Console.Write("How many times must the user complete this goal to receive the bonus? ");
                 int bonusThreshold = int.Parse(Console.ReadLine());
                 Console.Write("What is the bonus for accomplishing it that many times? ");
                 int bonusPoints = int.Parse(Console.ReadLine());
@@ -65,7 +65,7 @@ public class GoalTracker
             }
         }
 
-        Console.WriteLine("Goal created successfully.");
+        Console.WriteLine("Goal created successfully.\n");
     }
 
     public void ListGoals()

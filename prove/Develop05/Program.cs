@@ -7,6 +7,10 @@ class Program
         // Create a new instance of the GoalTracker class
         GoalTracker tracker = new GoalTracker();
         int response = 0;
+        Console.Clear();
+        // set console color
+        Console.BackgroundColor = ConsoleColor.DarkRed;
+        //Display welcome message
         while (response != 6)
         {
             // Console.Clear();
