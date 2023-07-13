@@ -48,14 +48,14 @@ public class BudgetTracker
 
         // Ask questions pertaining to spending behaviors
         
-        Console.WriteLine($"How did you spend the $ {expenditure}? List the items you bought ");
+        Console.WriteLine($"How did you spend the $ {expenditure}? List the items you bought and type ''Quit'' when done: ");
         string userInput = Console.ReadLine();
         while (userInput.ToLower() != "quit")
         {
             userInput = Console.ReadLine(); 
         }
-        // string foodSpent = Console.ReadLine()
-        Console.WriteLine("Ponder the item(s) you consider you could have done without. How much did the unneccesary item(s) cost you?: ");
+        
+        Console.WriteLine("Ponder on the item(s) you consider you could have done without. How much did the unneccesary item(s) cost you?: ");
         string unneccesaryItemsCost = Console.ReadLine();
 
         Console.WriteLine($"You could have saved $ {unneccesaryItemsCost}");
