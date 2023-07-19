@@ -6,6 +6,11 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.Clear();
+        // set console color
+        Console.BackgroundColor = ConsoleColor.DarkRed;
+        //Display welcome message
+        List <string> list = new List<string>();
         Console.WriteLine("Hello, Welcome to the Journal Program");
         Menu menu = new Menu();
 
@@ -22,6 +27,7 @@ class Program
             userInput = int.Parse(newUserInput);
             if (userInput == 1)
             {
+
                 string prompt = randomPromptGenerator.randomPrompt();
                 Console.Write(">");
                 string reply = Console.ReadLine();
@@ -29,12 +35,22 @@ class Program
                 newEntry._prompt = prompt;
                 newEntry._reply = reply;
                 myJournal._entries.Add(newEntry);
+                list.Clear();
+                foreach ( Entry line in myJournal._entries)
+                {
+                    list.Add(line.completeEntry());
+                }
             }
         
 
             if (userInput == 2)
             {
-                myJournal.Display();
+                
+                foreach ( string line in list)
+                    {
+                        Console.WriteLine(line);
+                    }
+                
             }
             if (userInput == 3)
             {
@@ -42,14 +58,15 @@ class Program
                 string fileName = Console.ReadLine();
                 using (StreamWriter outPutFile = new StreamWriter(fileName, true))
                 {
-                    foreach ( Entry line in myJournal._entries)
+                    foreach ( string line in list)
                     {
-                        outPutFile.WriteLine(line.completeEntry());
+                        outPutFile.WriteLine(line);
                     }
                 }     
             }
             if (userInput == 4)
             {
+                list.Clear();
                 Console.Write("What is the filename? ");
                 string fileName = Console.ReadLine();
                 string [] lines= File.ReadAllLines(fileName);
@@ -57,7 +74,7 @@ class Program
                 foreach (string line in lines)
 
                 {
-                    Console.WriteLine(line);
+                    list.Add(line);
                 }
                     
             }
